@@ -8,21 +8,29 @@
 <style>
 body{
     font-family: Arial, sans-serif;
+    background: linear-gradient(to bottom, #000000, #2b0000);
     color: white;
     text-align: center;
     padding: 50px;
-    transition: 0.8s;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    min-height: 100vh;
 }
 
 #quiz{
-    background: rgba(0,0,0,0.6);
+    background: rgba(0,0,0,0.7);
     padding: 30px;
     border-radius: 20px;
     max-width: 700px;
     margin: auto;
+}
+
+#fotoPergunta{
+    width: 100%;
+    max-width: 600px;
+    height: 320px;
+    object-fit: cover;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    border: 3px solid rgba(255,255,255,0.2);
 }
 
 button{
@@ -45,8 +53,13 @@ button:hover{
 <h1>❤️ Quiz do Amor ❤️</h1>
 
 <div id="quiz">
+
+    <img id="fotoPergunta" src="" alt="Foto do casal">
+
     <h2 id="pergunta"></h2>
+
     <div id="respostas"></div>
+
 </div>
 
 <script>
@@ -56,31 +69,31 @@ const perguntas = [
     pergunta: "Qual a data do nosso namoro?",
     opcoes: ["21/10/2023", "23/09/2023", "21/09/2023"],
     correta: 0,
-    fundo: "url('coracoes.jpg')"
+    foto: "coracoes.jpg"
 },
 {
     pergunta: "Quem disse 'eu te amo' primeiro?",
     opcoes: ["Momo Cristine da Silva", "Momo da Silva", "Os dois"],
     correta: 0,
-    fundo: "url('foto1.jpg')"
+    foto: "foto1.jpg"
 },
 {
     pergunta: "Qual apelido é o que eu mais te chamo?",
     opcoes: ["Amor", "Dengo", "Momo"],
     correta: [0,1,2],
-    fundo: "url('foto2.jpg')"
+    foto: "foto2.jpg"
 },
 {
     pergunta: "Quem é mais teimoso?",
     opcoes: ["Momo da Silva", "Momo Cristine da Silva", "Os dois"],
     correta: 2,
-    fundo: "url('foto3.jpg')"
+    foto: "foto3.jpg"
 },
 {
     pergunta: "Quanto eu te amo? ❤️",
     opcoes: ["Muito", "Demais", "Infinitamente"],
     correta: [0,1,2],
-    fundo: "url('96724fb7-e11e-4c71-9f98-c8f6363b6223.jpg')"
+    foto: "96724fb7-e11e-4c71-9f98-c8f6363b6223.jpg"
 }
 ];
 
@@ -91,9 +104,7 @@ function carregarPergunta() {
 
     const p = perguntas[atual];
 
-    document.body.style.background = p.fundo;
-    document.body.style.backgroundSize = "cover";
-    document.body.style.backgroundPosition = "center";
+    document.getElementById("fotoPergunta").src = p.foto;
 
     document.getElementById("pergunta").innerText = p.pergunta;
 
@@ -126,15 +137,19 @@ function responder(indice) {
 
     } else {
 
-        document.body.style.background = "url('resultado.jpg')";
-        document.body.style.backgroundSize = "cover";
-        document.body.style.backgroundPosition = "center";
-
         document.getElementById("quiz").innerHTML =
-        `<h1>🏆 Resultado Final ❤️</h1>
-         <h2>${pontos} / ${perguntas.length}</h2>
-         <p>Você conhece nosso amor muito bem! 💖</p>
-         <p>Eu te amo infinitamente ❤️</p>`;
+        `
+        <img src="resultado.jpg"
+             style="width:100%;max-width:600px;border-radius:15px;margin-bottom:20px;">
+
+        <h1>🏆 Resultado Final ❤️</h1>
+
+        <h2>${pontos} / ${perguntas.length}</h2>
+
+        <p>Você conhece nosso amor muito bem! 💖</p>
+
+        <p>Eu te amo infinitamente ❤️</p>
+        `;
     }
 }
 
