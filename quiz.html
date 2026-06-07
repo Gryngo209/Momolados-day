@@ -31,7 +31,7 @@ body{
     margin-bottom: 20px;
     border: 3px solid rgba(255,255,255,0.2);
 }
-}
+
 
 button{
     padding: 12px 24px;
@@ -138,21 +138,108 @@ function responder(indice) {
     } else {
 
         document.getElementById("quiz").innerHTML =
-`
-<h1>🏆 Resultado Final ❤️</h1>
+        `
+        <h1>🏆 Resultado Final ❤️</h1>
 
-<h2>${pontos} / ${perguntas.length}</h2>
+        <h2>${pontos} / ${perguntas.length}</h2>
 
-<p>Você conhece nosso amor muito bem! 💖</p>
+        <p>Você conhece nosso amor muito bem! 💖</p>
 
-<button onclick="iniciarForca()">
-🔓 Desbloquear Fase Secreta
-</button>
-`; }
+        <button onclick="iniciarForca()">
+            🔓 Desbloquear Fase Secreta
+        </button>
+        `;
+    }
+}
+
+function iniciarForca(){
+
+    const palavra = "DENGO";
+    let letrasDescobertas = [];
+
+    document.getElementById("quiz").innerHTML = `
+        <h1>🎮 Fase Secreta ❤️</h1>
+
+        <p>Descubra a palavra especial</p>
+
+        <h2 id="palavra"></h2>
+
+        <div id="letras"></div>
+    `;
+
+    function atualizarPalavra(){
+
+        let exibicao = "";
+
+        for(let letra of palavra){
+
+            if(letrasDescobertas.includes(letra)){
+                exibicao += letra + " ";
+            }else{
+                exibicao += "_ ";
+            }
+        }
+
+        document.getElementById("palavra").innerHTML = exibicao;
+
+        if(!exibicao.includes("_")){
+            mostrarMensagemFinal();
+        }
+    }
+
+    let html = "";
+
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("").forEach(letra=>{
+
+        html += `
+        <button onclick="clicarLetra('${letra}', this)">
+            ${letra}
+        </button>
+        `;
+    });
+
+    document.getElementById("letras").innerHTML = html;
+
+    window.clicarLetra = function(letra, botao){
+
+        botao.disabled = true;
+
+        if(palavra.includes(letra)){
+            letrasDescobertas.push(letra);
+        }
+
+        atualizarPalavra();
+    }
+
+    atualizarPalavra();
+}
+
+function mostrarMensagemFinal(){
+
+    document.getElementById("quiz").innerHTML = `
+        <img src="resultado.jpg"
+             style="
+             width:100%;
+             max-width:350px;
+             border-radius:15px;
+             margin-bottom:20px;
+             ">
+
+        <h1>❤️ Parabéns Meu Amor ❤️</h1>
+
+        <p>
+        Você encontrou a palavra secreta.
+        </p>
+
+        <p>
+        Desde o dia 21/10/2023 minha vida ficou muito mais feliz.
+        Obrigado por cada momento, cada abraço e cada sorriso.
+        </p>
+
+        <p>
+        Eu te amo infinitamente ❤️
+        </p>
+    `;
+}
 
 carregarPergunta();
-
-</script>
-
-</body>
-</html>
