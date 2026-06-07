@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Quiz do Amor ❤️</title>
+
+<style>
+body{
+    font-family:Arial;
+    background:#111;
+    color:white;
+    text-align:center;
+    padding:50px;
+}
+
+button{
+    padding:10px 20px;
+    margin:10px;
+    cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<h1>❤️ Quiz do Amor ❤️</h1>
+
+<div id="quiz">
+    <h2 id="pergunta"></h2>
+    <div id="respostas"></div>
+</div>
+
+<script>
+const perguntas = [
+{
+pergunta: "Qual a data do nosso namoro?",
+opcoes: ["21/10/2023","15/09/2023","01/01/2024"],
+correta: 0
+},
+{
+pergunta: "Quem disse 'eu te amo' primeiro?",
+opcoes: ["Michel","Stephany","Os dois"],
+correta: 0
+},
+{
+pergunta: "Qual nosso programa favorito?",
+opcoes: ["Cinema","Praia","Shopping"],
+correta: 0
+},
+{
+pergunta: "Quem é mais teimoso?",
+opcoes: ["Michel","Stephany","Os dois"],
+correta: 2
+},
+{
+pergunta: "Quanto eu te amo?",
+opcoes: ["Muito","Infinito","Mais que tudo"],
+correta: 2
+}
+];
+
+let atual = 0;
+let pontos = 0;
+
+function carregarPergunta(){
+    const p = perguntas[atual];
+
+    document.getElementById("pergunta").innerText = p.pergunta;
+
+    let html = "";
+
+    p.opcoes.forEach((opcao,index)=>{
+        html += `<button onclick="responder(${index})">${opcao}</button><br>`;
+    });
+
+    document.getElementById("respostas").innerHTML = html;
+}
+
+function responder(indice){
+    if(indice === perguntas[atual].correta){
+        pontos++;
+    }
+
+    atual++;
+
+    if(atual < perguntas.length){
+        carregarPergunta();
+    }else{
+        document.getElementById("quiz").innerHTML =
+        `<h1>❤️ Resultado ❤️</h1>
+         <h2>${pontos} / ${perguntas.length}</h2>
+         <p>Você conhece nosso amor muito bem! 💖</p>`;
+    }
+}
+
+carregarPergunta();
+</script>
+
+</body>
+</html>
