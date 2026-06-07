@@ -8,14 +8,25 @@
 <style>
 body{
     font-family: Arial, sans-serif;
-    background: #111;
     color: white;
     text-align: center;
     padding: 50px;
+    transition: 0.8s;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+#quiz{
+    background: rgba(0,0,0,0.6);
+    padding: 30px;
+    border-radius: 20px;
+    max-width: 700px;
+    margin: auto;
 }
 
 button{
-    padding: 10px 20px;
+    padding: 12px 24px;
     margin: 10px;
     cursor: pointer;
     border: none;
@@ -44,27 +55,32 @@ const perguntas = [
 {
     pergunta: "Qual a data do nosso namoro?",
     opcoes: ["21/10/2023", "23/09/2023", "21/09/2023"],
-    correta: 0
+    correta: 0,
+    fundo: "linear-gradient(135deg, #ff9a9e, #fad0c4)"
 },
 {
     pergunta: "Quem disse 'eu te amo' primeiro?",
     opcoes: ["Momo Cristine da Silva", "Momo da Silva", "Os dois"],
-    correta: 0
+    correta: 0,
+    fundo: "url('foto1.jpg')"
 },
 {
     pergunta: "Qual apelido é o que eu mais te chamo?",
     opcoes: ["Amor", "Dengo", "Momo"],
-    correta: [0,1,2]
+    correta: [0,1,2],
+    fundo: "url('foto2.jpg')"
 },
 {
     pergunta: "Quem é mais teimoso?",
     opcoes: ["Momo da Silva", "Momo Cristine da Silva", "Os dois"],
-    correta: 2
+    correta: 2,
+    fundo: "url('foto3.jpg')"
 },
 {
     pergunta: "Quanto eu te amo? ❤️",
     opcoes: ["Muito", "Demais", "Infinitamente"],
-    correta: [0,1,2]
+    correta: [0,1,2],
+    fundo: "url('foto4.jpg')"
 }
 ];
 
@@ -74,6 +90,10 @@ let pontos = 0;
 function carregarPergunta() {
 
     const p = perguntas[atual];
+
+    document.body.style.background = p.fundo;
+    document.body.style.backgroundSize = "cover";
+    document.body.style.backgroundPosition = "center";
 
     document.getElementById("pergunta").innerText = p.pergunta;
 
@@ -91,7 +111,8 @@ function responder(indice) {
     const correta = perguntas[atual].correta;
 
     if (
-        (Array.isArray(correta) && correta.includes(indice)) ||
+        (Array.isArray(correta) && correta.includes(indice))
+        ||
         (indice === correta)
     ) {
         pontos++;
@@ -105,10 +126,15 @@ function responder(indice) {
 
     } else {
 
+        document.body.style.background = "url('resultado.jpg')";
+        document.body.style.backgroundSize = "cover";
+        document.body.style.backgroundPosition = "center";
+
         document.getElementById("quiz").innerHTML =
         `<h1>🏆 Resultado Final ❤️</h1>
          <h2>${pontos} / ${perguntas.length}</h2>
-         <p>Você conhece nosso amor muito bem! 💖</p>`;
+         <p>Você conhece nosso amor muito bem! 💖</p>
+         <p>Eu te amo infinitamente ❤️</p>`;
     }
 }
 
