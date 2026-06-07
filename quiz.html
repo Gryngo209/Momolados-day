@@ -138,22 +138,18 @@ function responder(indice) {
     } else {
 
         document.getElementById("quiz").innerHTML =
-        `
-        <img src="download.jpg"
-             style="width:100%;max-width:600px;border-radius:15px;margin-bottom:20px;">
+`
+<h1>🏆 Resultado Final ❤️</h1>
 
-        <h1>🏆 Resultado Final ❤️</h1>
+<h2>${pontos} / ${perguntas.length}</h2>
 
-        <h2>${pontos} / ${perguntas.length}</h2>
+<p>Você conhece nosso amor muito bem! 💖</p>
 
-        <p>Você conhece nosso amor muiiiiii beeemmm! 💖</p>
-
-       <button onclick="iniciarForca()">
+<button onclick="iniciarForca()">
 🔓 Desbloquear Fase Secreta
 </button>
-        `;
+`;
     }
-}
 
 carregarPergunta();
 
