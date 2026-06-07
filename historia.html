@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Michel ❤️ Stephany</title>
+
+<style>
+body{
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    margin:0;
+    text-align:center;
+    color:white;
+}
+
+.container{
+    background:rgba(255,255,255,0.15);
+    padding:30px;
+    border-radius:20px;
+    backdrop-filter: blur(10px);
+}
+
+h1{
+    margin-bottom:10px;
+}
+
+#contador{
+    font-size:2rem;
+    font-weight:bold;
+    margin-top:20px;
+}
+.botao{
+    display:inline-block;
+    margin-top:20px;
+    padding:12px 24px;
+    background:white;
+    color:#ff4d6d;
+    text-decoration:none;
+    border-radius:30px;
+    font-weight:bold;
+    transition:0.3s;
+}
+
+.botao:hover{
+    transform:scale(1.05);
+}
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <img src="7be06ac1-c9ea-4f47-9ac8-99a712a9a64d.jpg" class="foto-casal">
+
+    <h1>❤️ Michel & Stephany ❤️</h1>
+    <p>Estamos juntos há:</p>
+    <br>
+<a href="historia.html" class="botao">
+    💖 Entrar na nossa história
+</a>
+</div>
+
+<script>
+const dataNamoro = new Date("2023-10-21");
+
+function atualizarContador() {
+    const hoje = new Date();
+
+    const diferenca = hoje - dataNamoro;
+
+    const dias = Math.floor(diferenca / (1000 * 60 * 60 * 24));
+
+    document.getElementById("contador").innerHTML =
+        dias + " dias 💖";
+}
+
+atualizarContador();
+</script>
+
+</body>
+</html>
