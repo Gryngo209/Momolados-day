@@ -2,21 +2,29 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Quiz do Amor ❤️</title>
 
 <style>
 body{
-    font-family:Arial;
-    background:#111;
-    color:white;
-    text-align:center;
-    padding:50px;
+    font-family: Arial, sans-serif;
+    background: #111;
+    color: white;
+    text-align: center;
+    padding: 50px;
 }
 
 button{
-    padding:10px 20px;
-    margin:10px;
-    cursor:pointer;
+    padding: 10px 20px;
+    margin: 10px;
+    cursor: pointer;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+}
+
+button:hover{
+    transform: scale(1.05);
 }
 </style>
 </head>
@@ -31,69 +39,81 @@ button{
 </div>
 
 <script>
+
 const perguntas = [
 {
-pergunta: "Qual a data do nosso namoro?",
-opcoes: ["21/10/2023","23/09/2023","21/09/2023"],
-correta: 0
+    pergunta: "Qual a data do nosso namoro?",
+    opcoes: ["21/10/2023", "23/09/2023", "21/09/2023"],
+    correta: 0
 },
 {
-pergunta: "Quem disse 'eu te amo' primeiro?",
-opcoes: ["Momo Cristine da Silva","Momo da silva","Os dois"],
-correta: 0
+    pergunta: "Quem disse 'eu te amo' primeiro?",
+    opcoes: ["Momo Cristine da Silva", "Momo da Silva", "Os dois"],
+    correta: 0
 },
 {
-pergunta: "Qual apelido é o que eu mais te chamo ?",
-opcoes: ["Amor","Dengo","Momo"],
-correta: 0
+    pergunta: "Qual apelido é o que eu mais te chamo?",
+    opcoes: ["Amor", "Dengo", "Momo"],
+    correta: [0,1,2]
 },
 {
-pergunta: "Quem é mais teimoso?",
-opcoes: ["Momo da Silva ","Momo Cristine da Silva","Os dois"],
-correta: 2
+    pergunta: "Quem é mais teimoso?",
+    opcoes: ["Momo da Silva", "Momo Cristine da Silva", "Os dois"],
+    correta: 2
 },
 {
-pergunta: "Quanto eu te amo? ❤️",
-opcoes: ["Muito","Demais","Infinitamente"],
-correta: [0,1,2]
+    pergunta: "Quanto eu te amo? ❤️",
+    opcoes: ["Muito", "Demais", "Infinitamente"],
+    correta: [0,1,2]
 }
 ];
 
 let atual = 0;
 let pontos = 0;
 
-function carregarPergunta(){
+function carregarPergunta() {
+
     const p = perguntas[atual];
 
     document.getElementById("pergunta").innerText = p.pergunta;
 
     let html = "";
 
-    p.opcoes.forEach((opcao,index)=>{
+    p.opcoes.forEach((opcao, index) => {
         html += `<button onclick="responder(${index})">${opcao}</button><br>`;
     });
 
     document.getElementById("respostas").innerHTML = html;
 }
 
-function responder(indice){
-    if(indice === perguntas[atual].correta){
+function responder(indice) {
+
+    const correta = perguntas[atual].correta;
+
+    if (
+        (Array.isArray(correta) && correta.includes(indice)) ||
+        (indice === correta)
+    ) {
         pontos++;
     }
 
     atual++;
 
-    if(atual < perguntas.length){
+    if (atual < perguntas.length) {
+
         carregarPergunta();
-    }else{
+
+    } else {
+
         document.getElementById("quiz").innerHTML =
-        `<h1>❤️ Resultado ❤️</h1>
+        `<h1>🏆 Resultado Final ❤️</h1>
          <h2>${pontos} / ${perguntas.length}</h2>
          <p>Você conhece nosso amor muito bem! 💖</p>`;
     }
 }
 
 carregarPergunta();
+
 </script>
 
 </body>
