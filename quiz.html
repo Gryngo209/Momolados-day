@@ -21,6 +21,8 @@ body{
     border-radius: 20px;
     max-width: 700px;
     margin: auto;
+    position: relative;
+    z-index: 2;
 }
 
 #fotoPergunta{
@@ -31,7 +33,25 @@ body{
     margin-bottom: 20px;
     border: 3px solid rgba(255,255,255,0.2);
 }
+.coracao{
+    position: fixed;
+    top: -50px;
+    z-index: 1;
+    pointer-events: none;
+    animation: cair 6s linear forwards;
+}
 
+@keyframes cair{
+    from{
+        transform: translateY(-50px);
+        opacity: 1;
+    }
+
+    to{
+        transform: translateY(110vh);
+        opacity: 0;
+    }
+}
 
 button{
     padding: 12px 24px;
@@ -232,7 +252,9 @@ function mostrarMensagemFinal(){
         </p>
 
         <p>
-        Espero que tenha gostado do momositte kkkkk, Feliz dias dos namorados minha vida mais um de mutios que vamos passar juntos.
+       Espero que tenha gostado do MomoSite ❤️.
+Feliz Dia dos Namorados, minha vida.
+Este é apenas mais um dos muitos que ainda vamos passar juntos.
         </p>
 
         <p>
@@ -240,7 +262,31 @@ function mostrarMensagemFinal(){
         </p>
     `;
 }
+function criarCoracao(){
 
+    const coracao = document.createElement("div");
+
+    const emojis = ["❤️","💕","💖","💘","💞"];
+
+    coracao.classList.add("coracao");
+
+    coracao.innerHTML =
+        emojis[Math.floor(Math.random() * emojis.length)];
+
+    coracao.style.left =
+        Math.random() * window.innerWidth + "px";
+
+    coracao.style.fontSize =
+        (15 + Math.random() * 25) + "px";
+
+    document.body.appendChild(coracao);
+
+    setTimeout(() => {
+        coracao.remove();
+    }, 6000);
+}
+
+setInterval(criarCoracao, 400);
 carregarPergunta();
 
 </script>
