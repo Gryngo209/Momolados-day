@@ -237,6 +237,27 @@ function iniciarForca(){
 function mostrarMensagemFinal(){
 
     document.getElementById("quiz").innerHTML = `
+
+        <h1>💌 Uma Carta Para Você 💌</h1>
+
+        <p>Clique na carta para abrir ❤️</p>
+
+        <div onclick="abrirCarta()"
+             style="
+             font-size:120px;
+             cursor:pointer;
+             transition:0.3s;
+             ">
+             ✉️
+        </div>
+
+    `;
+}
+
+function abrirCarta(){
+
+    document.getElementById("quiz").innerHTML = `
+
         <img src="download.jpg"
              style="
              width:100%;
@@ -252,15 +273,25 @@ function mostrarMensagemFinal(){
         </p>
 
         <p>
-       Espero que tenha gostado do MomoSite ❤️.
-Feliz Dia dos Namorados, minha vida.
-Este é apenas mais um dos muitos que ainda vamos passar juntos.
+        Espero que tenha gostado do MomoSite ❤️
+        </p>
+
+        <p>
+        Feliz Dia dos Namorados, minha vida.
+        Este é apenas mais um dos muitos que ainda vamos passar juntos.
+        </p>
+
+        <p>
+        Obrigado por cada sorriso,
+        cada abraço e cada momento ao seu lado.
         </p>
 
         <p>
         Ich Liebe Dich ❤️
         </p>
+
     `;
+
 }
 function criarCoracao(){
 
@@ -286,7 +317,7 @@ function criarCoracao(){
     }, 6000);
 }
 
-setInterval(criarCoracao, 400);
+setInterval(criarCoracao, 700);
 carregarPergunta();
 
 </script>
